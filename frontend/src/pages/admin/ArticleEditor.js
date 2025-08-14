@@ -6,7 +6,8 @@ import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import './admin.css';
 
-const API_URL = 'http://localhost:3001';
+// const API_URL = 'http://localhost:3001';
+const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 const ArticleEditor = () => {
   const { id } = useParams();

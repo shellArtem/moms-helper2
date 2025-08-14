@@ -3,7 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ArticleCard.css';
 
-const API_URL = 'http://localhost:3001';
+// const API_URL = 'http://localhost:3001';
+const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 const ArticleCard = ({ article }) => {
   return (

@@ -17,13 +17,13 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   const fetchArticles = async () => {
-    const response = await axios.get('http://localhost:3001/api/articles');
+    const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/articles`);
     setArticles(response.data);
   };
 
   const handleDelete = async (id) => {
     if (window.confirm('Вы уверены, что хотите удалить эту статью?')) {
-      await axios.delete(`http://localhost:3001/api/admin/articles/${id}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/admin/articles/${id}`);
       fetchArticles(); // Обновить список
     }
   };
