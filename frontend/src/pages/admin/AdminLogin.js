@@ -12,7 +12,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/admin/login', { password });
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/admin/login`, { password });
       localStorage.setItem('isAdminAuth', 'true'); // Простое решение для MVP
       navigate('/admin/dashboard');
     } catch (err) {

@@ -49,7 +49,7 @@ const CategoryPage = () => {
     const fetchArticles = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:3001/api/articles');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/articles`);
         // Фильтруем статьи по категории на стороне клиента
         const filteredArticles = response.data.filter(article => article.category === categoryName).sort((a, b) => b.id - a.id);;
         setArticles(filteredArticles);

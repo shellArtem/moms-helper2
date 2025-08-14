@@ -5,7 +5,8 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import './ArticlePage.css';
 
-const API_URL = 'http://localhost:3001';
+// const API_URL = 'http://localhost:3001';
+const API_URL = `${process.env.REACT_APP_SERVER_URL}`
 
 const ArticlePage = () => {
   const [article, setArticle] = useState(null);

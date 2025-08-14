@@ -1,46 +1,3 @@
-// // src/pages/HomePage.js
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import ArticleCard from '../components/ArticleCard';
-// import { Helmet } from 'react-helmet-async';
-
-// const HomePage = () => {
-//   const [articles, setArticles] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchArticles = async () => {
-//       try {
-//         const response = await axios.get('http://localhost:3001/api/articles');
-//         setArticles(response.data);
-//       } catch (error) {
-//         console.error("Ошибка при загрузке статей:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     fetchArticles();
-//   }, []);
-
-//   if (loading) {
-//     return <p>Загрузка...</p>;
-//   }
-
-//   return (
-//     <div>
-//       <Helmet>
-//         <title>Помощник Мамы - Главная</title>
-//         <meta name="description" content="Информационный ресурс для беременных женщин и родителей маленьких детей. Статьи о беременности, родах, уходе за ребенком." />
-//       </Helmet>
-//       <h1>Последние статьи</h1>
-//       {articles.map(article => (
-//         <ArticleCard key={article.id} article={article} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default HomePage;
 // src/pages/HomePage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -71,7 +28,7 @@ const HomePage = () => {
 
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/articles');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/articles`);
         // const sortedArticles = response.data.sort((a, b) => b.id - a.id);
         setArticles(response.data);
       } catch (error) {
