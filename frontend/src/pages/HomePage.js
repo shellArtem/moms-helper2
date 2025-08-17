@@ -28,7 +28,7 @@ const HomePage = () => {
 
     const fetchArticles = async () => {
       try {
-        const response = await axios.get(`/api/articles`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/articles`);
         // const sortedArticles = response.data.sort((a, b) => b.id - a.id);
         setArticles(response.data);
       } catch (error) {
