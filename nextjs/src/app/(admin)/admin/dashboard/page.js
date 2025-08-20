@@ -10,7 +10,7 @@ const AdminDashboardPage = () => {
     const [articles, setArticles] = useState([]);
     
     const fetchArticles = async () => {
-        const response = await axios.get(`http://localhost:3001/api/articles`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/articles`);
         setArticles(response.data);
     };
     
@@ -20,7 +20,7 @@ const AdminDashboardPage = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Вы уверены, что хотите удалить эту статью?')) {
-            await axios.delete(`http://localhost:3001/api/admin/articles/${id}`);
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/articles/${id}`);
             fetchArticles(); // Обновить список
         }
     };

@@ -21,6 +21,7 @@ const getCategoryTitle = (categorySlug) => {
   };
 
 async function getCategoryArticles(categoryName) {
+    console.log('category', process.env.API_URL)
     try {
         const response = await axios.get(`${process.env.API_URL}/api/articles`);
         return response.data

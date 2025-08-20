@@ -15,7 +15,7 @@ const AdminLoginPage = () => {
         e.preventDefault();
         try {
             // Используем NEXT_PUBLIC_API_URL
-            await axios.post(`http://localhost:3001/api/admin/login`, { password });
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/login`, { password });
             localStorage.setItem('isAdminAuth', 'true');
             router.push('/admin/dashboard'); // Переход на дашборд после успеха
         } catch (err) {
