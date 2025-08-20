@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import './ArticleCard.css';
+import Image from 'next/image';
 
 // URL вашего API, доступный на клиенте
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
