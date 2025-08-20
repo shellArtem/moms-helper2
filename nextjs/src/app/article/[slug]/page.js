@@ -51,6 +51,7 @@ export default async function ArticlePage({ params }) {
                         sizes="100vw"
                         style={{ objectFit: 'cover' }}
                         className="article-header-image"
+                        unoptimized={true}
                     />
                 </div>
                 <h1>{article.title}</h1>

@@ -14,11 +14,17 @@ const ArticleCard = ({ article }) => {
       {/* --- ИЗМЕНЕНИЕ: to -> href --- */}
       <Link href={`/article/${article.slug}`}>
         {/* --- ИЗМЕНЕНИЕ: Правильное формирование URL изображения --- */}
-        <img 
-          src={`${API_URL}${article.image}`} 
-          alt={article.title} 
-          className="article-card-image" 
-        />
+        <div className="imageContainer">
+          <Image
+            src={`${process.env.API_URL}${article.image}`}
+            alt={article.title}
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+            className="article-card-image"
+            unoptimized={true}
+          />
+        </div>
       </Link>
       <div className="article-card-content">
         <h2 className="article-card-title">
