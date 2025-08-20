@@ -4,8 +4,6 @@ import Link from 'next/link';
 import './ArticleCard.css';
 import Image from 'next/image';
 
-// URL вашего API, доступный на клиенте
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const ArticleCard = ({ article }) => {
   if (!article) return null; // Защита от случая, если article не передан
@@ -17,7 +15,7 @@ const ArticleCard = ({ article }) => {
         {/* --- ИЗМЕНЕНИЕ: Правильное формирование URL изображения --- */}
         <div className="imageContainer">
           <Image
-            src={`${process.env.API_URL}${article.image}`}
+            src={`/images/${article.imageFileName}`}
             alt={article.title}
             fill
             sizes="100vw"
