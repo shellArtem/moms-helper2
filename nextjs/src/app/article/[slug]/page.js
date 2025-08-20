@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }) {
             <div className="article-page">
                 <div className="imageContainer">
                     <Image
-                        src={`/images/${article.imageFileName}`}
+                        src={article.image} 
                         alt={article.title}
                         fill
                         sizes="100vw"

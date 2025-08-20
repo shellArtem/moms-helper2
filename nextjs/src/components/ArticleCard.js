@@ -15,7 +15,7 @@ const ArticleCard = ({ article }) => {
         {/* --- ИЗМЕНЕНИЕ: Правильное формирование URL изображения --- */}
         <div className="imageContainer">
           <Image
-            src={`/images/${article.imageFileName}`}
+            src={article.image} 
             alt={article.title}
             fill
             sizes="100vw"
