@@ -9,32 +9,33 @@ const ArticleCard = ({ article }) => {
   if (!article) return null; // Защита от случая, если article не передан
 
   return (
-    <article className="article-card">
-      {/* --- ИЗМЕНЕНИЕ: to -> href --- */}
-      <Link href={`/article/${article.slug}`}>
+    <Link href={`/article/${article.slug}`}>
+      <article className="article-card">
+        {/* --- ИЗМЕНЕНИЕ: to -> href --- */}
         {/* --- ИЗМЕНЕНИЕ: Правильное формирование URL изображения --- */}
         <div className="imageContainer">
           <Image
-            src={article.image} 
+            src={article.image}
             alt={article.title}
             fill
             // sizes="100vw"
             style={{ objectFit: 'cover' }}
+            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
             className="article-card-image"
             unoptimized={true}
           />
         </div>
-      </Link>
-      <div className="article-card-content">
-        <h2 className="article-card-title">
+        <div className="article-card-content">
+          <h2 className="article-card-title">
+            {/* --- ИЗМЕНЕНИЕ: to -> href --- */}
+            {article.title}
+          </h2>
+          <p className="article-card-excerpt">{article.excerpt}</p>
           {/* --- ИЗМЕНЕНИЕ: to -> href --- */}
-          <Link href={`/article/${article.slug}`}>{article.title}</Link>
-        </h2>
-        <p className="article-card-excerpt">{article.excerpt}</p>
-        {/* --- ИЗМЕНЕНИЕ: to -> href --- */}
-        <Link href={`/article/${article.slug}`} className="read-more-btn">Читать далее</Link>
-      </div>
-    </article>
+          <div className="read-more-btn">Читать далее</div>
+        </div>
+      </article>
+    </Link>
   );
 };
 

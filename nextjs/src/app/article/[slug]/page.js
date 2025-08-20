@@ -50,6 +50,7 @@ export default async function ArticlePage({ params }) {
                         fill
                         // sizes="100vw"
                         style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                         className="article-header-image"
                         unoptimized={true}
                     />
