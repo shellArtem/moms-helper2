@@ -1,6 +1,7 @@
 // backend/server.js
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 const apiRoutes = require('./routes/api');
 
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 app.use('/api', apiRoutes);
 
 // Обслуживание статических файлов (картинок)
-app.use('/images', express.static('public/images'));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
