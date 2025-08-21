@@ -4,12 +4,13 @@ import Link from 'next/link';
 import './ArticleCard.css';
 import Image from 'next/image';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = 'https://moms-helper.ru/';
 
 const ArticleCard = ({ article }) => {
-  if (!article) return null; // Защита от случая, если article не передан
+  if (!article) return null; 
 
   const imageUrl = `${API_URL}${article.image}`
+
   return (
     <Link href={`/article/${article.slug}`}>
       <article className="article-card">
