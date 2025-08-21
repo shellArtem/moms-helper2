@@ -3,24 +3,18 @@
 
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Script from 'next/script'; // <-- Будем использовать встроенный компонент Script
+import Script from 'next/script';
 
-// ID вашего счетчика
-const METRIKA_ID = 103783435; // <-- ВАШ ID
+const METRIKA_ID = 103783435; 
 
 export const Metrika = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
-
-    // Этот useEffect будет отслеживать смену URL и отправлять "хит" в Метрику
-    // Это нужно для корректной работы в режиме SPA (когда пользователь переходит по ссылкам)
     useEffect(() => {
         // Формируем полный URL для отправки в 'hit'
         const url = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
         
-        // @ts-ignore
         if (window.ym) {
-            // @ts-ignore
             window.ym(METRIKA_ID, 'hit', url);
         }
     }, [pathname, searchParams]); // Срабатывает при каждом изменении пути или query-параметров
@@ -28,7 +22,7 @@ export const Metrika = () => {
     return (
         <>
             {/* Используем компонент <Script> от Next.js для оптимизированной загрузки */}
-            <Script id="yandex-metrika" strategy="afterInteractive">
+            <Script id="yandex-metrika" strategy="beforeInteractive">
                 {`
                     (function(m,e,t,r,i,k,a){
                         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
