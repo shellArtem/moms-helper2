@@ -3,7 +3,7 @@
 
 import React, { useState, useMemo } from 'react';
 import ArticleCard from '@/components/ArticleCard';
-
+import '../styles/HomePage.css'
 // Компонент для поиска (можно оставить здесь или вынести)
 const StickySearch = ({ searchTerm, setSearchTerm }) => {
     return (
