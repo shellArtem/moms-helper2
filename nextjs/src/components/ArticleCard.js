@@ -4,7 +4,7 @@ import Link from 'next/link';
 import './ArticleCard.css';
 import Image from 'next/image';
 
-const API_URL = 'https://moms-helper.ru';
+const API_URL = 'http:/localhost:3001';
 
 const ArticleCard = ({ article }) => {
   if (!article) return null; 
