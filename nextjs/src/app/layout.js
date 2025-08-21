@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header"; // Next.js понимает @/ как src/
 import Footer from "@/components/Footer";
 import { Metrika } from "@/components/Metrika";
+import { SuspenseWrapper } from '@/components/SuspenseWrapper';
 
 export const metadata = {
   title: "Помощник Мамы - Главная",
@@ -18,7 +19,9 @@ export default function RootLayout({ children }) {
           <main className="main-content">{children}</main>
           <Footer />
         </div>
-        <Metrika />
+        <SuspenseWrapper>
+          <Metrika />
+        </SuspenseWrapper>
       </body>
     </html>
   );
