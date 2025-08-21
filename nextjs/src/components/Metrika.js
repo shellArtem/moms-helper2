@@ -22,7 +22,7 @@ export const Metrika = () => {
     return (
         <>
             {/* Используем компонент <Script> от Next.js для оптимизированной загрузки */}
-            <Script id="yandex-metrika" strategy="beforeInteractive">
+            <Script type='text/javascript' id="yandex-metrika" strategy="beforeInteractive">
                 {`
                     (function(m,e,t,r,i,k,a){
                         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -41,7 +41,6 @@ export const Metrika = () => {
                     });
                 `}
             </Script>
-            {/* Тег <noscript> можно вставить как обычный JSX */}
             <noscript>
                 <div>
                     <img src={`https://mc.yandex.ru/watch/${METRIKA_ID}`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
