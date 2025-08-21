@@ -5,18 +5,17 @@ const nextConfig = {
         // --- ДОБАВЬТЕ ЭТОТ ОБЪЕКТ В МАССИВ remotePatterns ---
         remotePatterns: [
             {
+                protocol: 'https',
+                hostname: 'moms-helper.ru',
+                port: '', // для https порт не нужен
+                pathname: '/images/**',
+            },
+            {
                 protocol: 'http',
                 hostname: 'localhost',
                 port: '3001', // Укажите порт вашего API!
                 pathname: '/images/**', // Разрешаем все пути, начинающиеся с /images/
             },
-            // Сюда в будущем вы добавите домен вашего продакшен-API
-            // {
-            //   protocol: 'https',
-            //   hostname: 'api.moms-helper.ru',
-            //   port: '',
-            //   pathname: '/images/**',
-            // }
         ],
     },
 };
