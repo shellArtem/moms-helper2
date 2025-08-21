@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const imageLoader = ({ src }) => {
   // Она просто возвращает полный URL к вашему API
-  return `http://localhost:3001${src}`;
+  return `https://moms-helper.ru${src}`;
 };
 
 const ArticleCard = ({ article }) => {
