@@ -23,7 +23,7 @@ const ArticleCard = ({ article }) => {
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
             className="article-card-image"
-            unoptimized={true}
+            // unoptimized={true}
           />
         </div>
         <div className="article-card-content">
