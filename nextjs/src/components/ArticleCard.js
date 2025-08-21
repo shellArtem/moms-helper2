@@ -1,10 +1,12 @@
 // src/components/ArticleCard.js
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import './ArticleCard.css';
 import Image from 'next/image';
 
-const API_URL = 'http:/localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const ArticleCard = ({ article }) => {
   if (!article) return null; 
