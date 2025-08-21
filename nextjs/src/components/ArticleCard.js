@@ -4,26 +4,28 @@ import Link from 'next/link';
 import './ArticleCard.css';
 import Image from 'next/image';
 
-const API_URL = 'https://moms-helper.ru';
+const imageLoader = ({ src }) => {
+  // Она просто возвращает полный URL к вашему API
+  return `http://localhost:3001${src}`;
+};
 
 const ArticleCard = ({ article }) => {
-  if (!article) return null; 
-
-  const imageUrl = `${API_URL}${article.image}`
+  if (!article) return null;
 
   return (
     <Link href={`/article/${article.slug}`}>
       <article className="article-card">
         <div className="imageContainer">
           <Image
-            src={imageUrl}
+            loader={imageLoader}
+            src={article.image}
             alt={article.title}
             fill
             // sizes="100vw"
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
             className="article-card-image"
-            // unoptimized={true}
+          // unoptimized={true}
           />
         </div>
         <div className="article-card-content">
