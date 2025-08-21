@@ -1,0 +1,29 @@
+.sticky-search-container {
+    background-color: #ffff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 60px; /* Прилипает на 60px от верха (под хедером, если его высота ~60px) */
+    z-index: 500;
+    /* Легкая тень, чтобы отделить от контента при скролле */
+    /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); */
+    margin-bottom: 20px;
+    /* Чтобы фон не был прозрачным на мобильных */
+    transform: translateZ(0); 
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-input {
+    width: 95%;
+    padding: 12px 0px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .search-input:focus {
+    border-color: #e56b6f; /* Розовый акцент при фокусе */
+    box-shadow: 0 0 0 3px rgba(229, 107, 111, 0.2);
+  }
