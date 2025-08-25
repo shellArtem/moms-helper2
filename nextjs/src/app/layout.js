@@ -4,11 +4,9 @@ import Header from "@/components/Header"; // Next.js понимает @/ как 
 import Footer from "@/components/Footer";
 import { Metrika } from "@/components/Metrika";
 import { SuspenseWrapper } from '@/components/SuspenseWrapper';
-// ID вашего счетчика
-const METRIKA_ID = 103783435;
 
 export const metadata = {
-  title: "Помощник Мамы - Главная",
+  title: "Помощник Мамы",
   description: "Информационный ресурс для беременных...",
 };
 
@@ -16,44 +14,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <body>
+        <SuspenseWrapper>
+          <Metrika />
+        </SuspenseWrapper>
         <div className="App">
           <Header />
           <main className="main-content">{children}</main>
           <Footer />
         </div>
-        <SuspenseWrapper>
-          <Metrika />
-        </SuspenseWrapper>
-
-        {/* --- ВСТАВЛЯЕМ КОД МЕТРИКИ НАПРЯМУЮ --- */}
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
-                    (function(m,e,t,r,i,k,a){
-                        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                        m[i].l=1*new Date();
-                        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-                        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-                    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-
-                    ym(${METRIKA_ID}, 'init', {
-                        ssr: true,
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true,
-                        webvisor:true,
-                        ecommerce:"dataLayer"
-                    });
-                `,
-          }}
-        />
-        <noscript>
-          <div>
-            <img src={`https://mc.yandex.ru/watch/${METRIKA_ID}`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
-          </div>
-        </noscript>
-        {/* --- КОНЕЦ БЛОКА МЕТРИКИ --- */}
       </body>
     </html>
   );
