@@ -4,6 +4,7 @@
 import axios from 'axios';
 import ArticleList from '@/components/ArticleList'; // Импортируем наш новый клиентский компонент
 
+export const revalidate = 3600;
 // Эта функция, как и раньше, выполняется на сервере
 async function getArticles() {
   try {

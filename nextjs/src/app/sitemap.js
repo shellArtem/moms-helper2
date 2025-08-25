@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
+
+export const revalidate = 3600;
 // URL вашего сайта. Лучше вынести в переменные окружения для гибкости.
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://moms-helper.ru';
 
