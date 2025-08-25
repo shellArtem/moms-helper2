@@ -84,8 +84,14 @@ router.post('/admin/login', (req, res) => {
 router.post('/admin/articles', (req, res) => {
   // Здесь нужна проверка "авторизации", для MVP опустим
   const articles = readArticles();
+
+  const maxId = articles.reduce((max, article) => (article.id > max ? article.id : max), 0);
+
+  // 2. Создаем новый ID, прибавляя 1 к максимальному
+  const newId = maxId + 1;
+
   const newArticle = {
-    id: Date.now(), // Простой уникальный ID
+    id: newId,
     ...req.body
   };
   articles.push(newArticle);
