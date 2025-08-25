@@ -35,10 +35,12 @@ export const Metrika = () => {
                         })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
                         
                         ym(${METRIKA_ID}, 'init', {
+                            ssr:true,
                             clickmap:true,
                             trackLinks:true,
                             accurateTrackBounce:true,
-                            webvisor:true
+                            webvisor:true,
+                            ecommerce:"dataLayer"
                         });
                     `,
                 }}
@@ -51,3 +53,5 @@ export const Metrika = () => {
         </>
     );
 };
+
+
