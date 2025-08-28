@@ -60,6 +60,17 @@ bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     const fromId = msg.from.id;
 
+    // --- ВРЕМЕННЫЙ БЛОК ДЛЯ ОТЛАДКИ ---
+    console.log('---------------------------------');
+    console.log('ПОЛУЧЕНО НОВОЕ СООБЩЕНИЕ');
+    console.log(`ID чата, откуда пришло: ${chatId}`);
+    console.log(`ID чата из .env:          ${CHAT_ID}`);
+    console.log(`ID отправителя:           ${fromId}`);
+    console.log(`ID админа из .env:        ${ADMIN_USER_ID}`);
+    console.log(`Это ответ?                ${!!msg.reply_to_message}`);
+    console.log('---------------------------------');
+    // --- КОНЕЦ БЛОКА ДЛЯ ОТЛАДКИ ---
+
     // СЦЕНАРИЙ 1: Сообщение пришло от АДМИНА в приватном канале И это ОТВЕТ
     if (chatId.toString() === CHAT_ID && msg.reply_to_message && fromId.toString() === ADMIN_USER_ID) {
 
