@@ -11,6 +11,8 @@
     transform: translateZ(0); 
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap: 10px;
   }
   
   .search-input {

@@ -4,7 +4,8 @@
 import React, { useState, useMemo } from 'react';
 import ArticleCard from '@/components/ArticleCard';
 import '../styles/HomePage.css'
-// Компонент для поиска (можно оставить здесь или вынести)
+import TelegramIcon from './TelegramIcon'
+
 const StickySearch = ({ searchTerm, setSearchTerm }) => {
     return (
         <div className="sticky-search-container">
@@ -15,6 +16,22 @@ const StickySearch = ({ searchTerm, setSearchTerm }) => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
             />
+            <a
+                style={{
+                    marginLeft: '10px',
+                    textDecoration: 'none',
+                    color: '#e56b6f',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px'
+                }}
+                href="https://t.me/MomsHelperSupportBot"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <TelegramIcon />
+                Задать вопрос
+            </a>
         </div>
     );
 };
@@ -27,7 +44,7 @@ export default function ArticleList({ initialArticles }) {
         if (!searchTerm) {
             return initialArticles.slice(0, 30);
         }
-        
+
         const lowercasedFilter = searchTerm.toLowerCase();
 
         return initialArticles.filter(article => {
