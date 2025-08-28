@@ -18,9 +18,9 @@ bot.on('message', (msg) => {
   console.log(`Получено сообщение от ${username} (ID: ${userId}): ${text}`);
 
   // Формируем красивое сообщение для пересылки в ваш канал
+//   User ID: ${userId}
   const forwardMessage = `
     Задали новый вопрос, пользователь: ${username}
-    User ID: ${userId}
     --------------------
     Текст вопроса: ${text}
   `;
