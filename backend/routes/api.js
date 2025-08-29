@@ -4,7 +4,6 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const path = require('path');
 
 const multer = require('multer');
 const sharp = require('sharp');
