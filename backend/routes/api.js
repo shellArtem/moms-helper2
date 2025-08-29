@@ -72,8 +72,8 @@ router.get('/articles/:slug', (req, res) => {
 // Вход в админку
 router.post('/admin/login', (req, res) => {
   const { password } = req.body;
-  // if (password === process.env.ADMIN_PASSWORD) {
-  if (password === 123) {
+  console.log(1111111111111, process.env.ADMIN_PASSWORD)
+  if (password === process.env.ADMIN_PASSWORD) {
     // В реальном приложении здесь будет генерация JWT токена
     res.json({ success: true, message: "Вход выполнен" });
   } else {
