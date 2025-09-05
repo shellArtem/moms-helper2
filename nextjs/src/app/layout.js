@@ -59,6 +59,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <head>
+        <meta name="yandex-verification" content="65ece89f248de5b7" />
         <SuspenseWrapper>
           <Metrika />
         </SuspenseWrapper>
