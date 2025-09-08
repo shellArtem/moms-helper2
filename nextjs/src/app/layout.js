@@ -11,55 +11,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // return (
-  //   <html lang="ru">
-  //     <body>
-  //       <SuspenseWrapper>
-  //         <Metrika />
-  //       </SuspenseWrapper>
-
-  //       {/* --- ВСТАВЛЯЕМ ТОЧНЫЙ КОД ОТ ЯНДЕКСА --- */}
-  //       <script
-  //         type="text/javascript"
-  //         dangerouslySetInnerHTML={{
-  //           __html: `
-  //                   (function(m,e,t,r,i,k,a){
-  //                       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-  //                       m[i].l=1*new Date();
-  //                       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-  //                       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-  //                   })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=103783435','ym');
-
-  //                   ym(103783435, 'init', {
-  //                       ssr: true,
-  //                       clickmap:true,
-  //                       trackLinks:true,
-  //                       accurateTrackBounce:true,
-  //                       webvisor:true,
-  //                       ecommerce:"dataLayer"
-  //                   });
-  //               `,
-  //         }}
-  //       />
-  //       <noscript>
-  //         <div>
-  //           <img src={`https://mc.yandex.ru/watch/103783435`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
-  //         </div>
-  //       </noscript>
-  //       {/* --- КОНЕЦ БЛОКА МЕТРИКИ --- */}
-
-  //       <div className="App">
-  //         <Header />
-  //         <main className="main-content">{children}</main>
-  //         <Footer />
-  //       </div>
-  //     </body>
-  //   </html>
-  // );
+  
   return (
     <html lang="ru">
       <head>
         <meta name="yandex-verification" content="65ece89f248de5b7" />
+        <meta key="description" name="description"
+          content="Все для будущих и молодых мам: статьи по беременности, естественным родам, уходу за младенцем, его здоровью и развитию до года. Оперативная помощь с вопросами. Moms-Helper.ru – ваш эксперт в материнстве." />
         <SuspenseWrapper>
           <Metrika />
         </SuspenseWrapper>
