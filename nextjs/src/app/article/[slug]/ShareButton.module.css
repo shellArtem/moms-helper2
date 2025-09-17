@@ -41,6 +41,7 @@
     position: absolute;
     right: 18px;
     top: 24px;
+    z-index: 99;
 }
 
 .share-button {
