@@ -103,7 +103,7 @@ export default async function ArticlePage({ params }) {
         <div className={styles['article-page-container']}> {/* Используем CSS Modules */}
             <BackButton />
 
-            <button className={styles["share-button"]} onClick={handleShare}>
+            {/* <button className={styles["share-button"]} onClick={handleShare}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -122,7 +122,7 @@ export default async function ArticlePage({ params }) {
                     <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                 </svg>
                 <span>Поделиться</span>
-            </button>
+            </button> */}
 
             <div className={styles['article-page']}>
                 <div className={styles.imageContainer}>
