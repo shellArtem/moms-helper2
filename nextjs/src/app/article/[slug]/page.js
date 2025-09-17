@@ -28,6 +28,19 @@ async function getAllArticles() {
     }
 }
 
+// // Функция для генерации мета-тегов на сервере
+// export async function generateMetadata({ params }) {
+//     const awaitedParams = await params;
+//     const article = await getArticle(awaitedParams.slug);
+//     if (!article) {
+//         return { title: 'Статья не найдена' };
+//     }
+//     return {
+//         title: `${article.title} - Помощник Мамы`,
+//         description: article.excerpt,
+//     };
+// }
+
 // Функция для генерации мета-тегов на сервере
 export async function generateMetadata({ params }) {
     const awaitedParams = await params;
@@ -35,9 +48,27 @@ export async function generateMetadata({ params }) {
     if (!article) {
         return { title: 'Статья не найдена' };
     }
+
+    const canonicalUrl = `https://moms-helper.ru/article/${article.slug}`;
+
     return {
-        title: `${article.title} - Помощник Мамы`,
+        title: `${article.title}`,
         description: article.excerpt,
+        alternates: {
+            canonical: canonicalUrl,
+        },
+        openGraph: {
+            title: `${article.title} - Помощник Мамы`,
+            description: article.excerpt,
+            url: canonicalUrl,
+            images: [{ url: article.image }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${article.title} - Помощник Мамы`,
+            description: article.excerpt,
+            images: [article.image],
+        },
     };
 }
 
