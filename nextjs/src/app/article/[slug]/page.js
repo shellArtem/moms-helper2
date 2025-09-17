@@ -1,72 +1,3 @@
-// // src/app/article/[slug]/page.js
-
-// import axios from 'axios';
-// import Image from 'next/image'; // Используем next/image для оптимизации
-// import '../../../styles/ArticlePage.css'; // <-- ШАГ 1: Импортируем CSS-модуль
-// import BackButton from '../../../components/BackButton'; // <-- ШАГ 3: Создадим отдельный компонент для кнопки
-
-// // Функция для загрузки данных на сервере
-// async function getArticle(slug) {
-//     try {
-//         const response = await axios.get(`${process.env.API_URL}/api/articles/${slug}`);
-//         return response.data;
-//     } catch (error) {
-//         return null;
-//     }
-// }
-
-// // Функция для генерации мета-тегов на сервере
-// export async function generateMetadata({ params }) {
-//     const awaitedParams = await params;
-//     const article = await getArticle(awaitedParams.slug);
-//     if (!article) {
-//         return { title: 'Статья не найдена' };
-//     }
-//     return {
-//         title: `${article.title} - Помощник Мамы`,
-//         description: article.excerpt,
-//     };
-// }
-
-// // Компонент страницы
-// export default async function ArticlePage({ params }) {
-//     const awaitedParams = await params;
-//     const article = await getArticle(awaitedParams.slug);
-
-//     if (!article) {
-//         return <div>Статья не найдена.</div>;
-//     }
-
-//     return (
-//         // --- ШАГ 2: Применяем классы как обычные строки ---
-//         <div className="article-page-container">
-//             <BackButton />
-
-//             <div className="article-page">
-//                 <div className="imageContainer">
-//                     <Image
-//                         src={article.image} 
-//                         alt={article.title}
-//                         fill
-//                         // sizes="100vw"
-//                         style={{ objectFit: 'cover' }}
-//                         sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-//                         className="article-header-image"
-//                         unoptimized={true}
-//                     />
-//                 </div>
-//                 <h1>{article.title}</h1>
-//                 <div
-//                     className="article-content"
-//                     dangerouslySetInnerHTML={{ __html: article.content }}
-//                 />
-//             </div>
-//         </div>
-//     );
-// }
-
-// src/app/article/[slug]/page.js
-
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link'; // <--- Импортируем Link для внутренних ссылок
@@ -145,10 +76,53 @@ export default async function ArticlePage({ params }) {
         relatedArticles = relatedArticles.sort(() => 0.5 - Math.random()).slice(0, 5);
     }
 
+    const handleShare = async () => {
+        const url = typeof window !== "undefined" ? window.location.href : "";
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: currentArticle.title,
+                    text: "Посмотри эту статью!",
+                    url,
+                });
+            } catch (err) {
+                console.error("Ошибка при использовании Web Share API:", err);
+            }
+        } else {
+            try {
+                await navigator.clipboard.writeText(url);
+                alert("Ссылка скопирована!");
+            } catch (err) {
+                console.error("Не удалось скопировать ссылку:", err);
+            }
+        }
+    };
+
 
     return (
         <div className={styles['article-page-container']}> {/* Используем CSS Modules */}
             <BackButton />
+
+            <button className={styles["share-button"]} onClick={handleShare}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>Поделиться</span>
+            </button>
 
             <div className={styles['article-page']}>
                 <div className={styles.imageContainer}>
