@@ -156,10 +156,11 @@ export default async function ArticlePage({ params }) {
                         src={currentArticle.image}
                         alt={currentArticle.title}
                         fill
+                        // sizes="100vw"
                         style={{ objectFit: 'cover' }}
                         sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                        className={styles['article-header-image']} // Используем CSS Modules
-                    // unoptimized={true} // Удалите, если хотите использовать оптимизацию Next.js Image
+                        className="article-header-image"
+                        unoptimized={true}
                     />
                 </div>
                 <h1>{currentArticle.title}</h1>
