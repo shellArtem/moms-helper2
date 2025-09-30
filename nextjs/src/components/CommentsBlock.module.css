@@ -1,0 +1,137 @@
+
+/* Главный контейнер всего блока комментариев */
+.commentsSection {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.commentsSection h2,
+.commentsSection h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Стили для формы добавления комментария */
+.commentForm {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+/* Группа для label + input/textarea */
+.formGroup {
+    margin-bottom: 1rem;
+}
+
+.formGroup label {
+    display: block;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Важно для правильного расчета ширины */
+    transition: border-color 0.2s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #007bff; /* Цвет при фокусе, выберите свой */
+}
+
+/* Кнопка отправки */
+.commentForm button {
+    background-color: #007bff; /* Основной цвет кнопки */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.commentForm button:hover {
+    background-color: #0056b3; /* Цвет при наведении */
+}
+
+.commentForm button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+/* Сообщения об ошибке и успехе */
+.error {
+    color: #d8000c;
+    background-color: #ffbaba;
+    border: 1px solid #d8000c;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.success {
+    color: #270;
+    background-color: #dff2bf;
+    border: 1px solid #270;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Список комментариев */
+.commentList {
+    margin-top: 2rem;
+}
+
+/* Отдельный комментарий */
+.comment {
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Имя автора комментария */
+.commentAuthor {
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Текст комментария */
+.commentText {
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 0.5rem 0;
+    white-space: pre-wrap; /* Сохраняет переносы строк, введенные пользователем */
+}
+
+/* Дата комментария */
+.commentDate {
+    font-size: 0.8rem;
+    color: #999;
+    text-align: right;
+    margin: 0;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 600px) {
+    .commentForm {
+        padding: 1rem;
+    }
+}

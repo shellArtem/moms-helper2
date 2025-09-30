@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const multer = require('multer');
 const sharp = require('sharp');
-const crypto = 'crypto';
+const crypto = require('crypto');
 
 const articlesFilePath = path.join(__dirname, '..', 'data', 'articles.json');
 
@@ -130,6 +130,50 @@ router.delete('/admin/articles/:id', (req, res) => {
   articles = articles.filter(a => a.id != req.params.id);
   writeArticles(articles);
   res.status(204).send(); // No Content
+});
+
+router.post('/comments', (req, res) => {
+  try {
+    // В Express данные из POST-запроса находятся в req.body
+    const { name, comment, slug } = req.body;
+
+    if (!name || !comment || !slug) {
+      return res.status(400).json({ error: 'Имя, комментарий и slug обязательны' });
+    }
+
+    const articles = readArticles();
+    
+    // Находим статью, к которой относится комментарий
+    const articleIndex = articles.findIndex(article => article.slug === slug);
+
+    if (articleIndex === -1) {
+      return res.status(404).json({ error: 'Статья не найдена' });
+    }
+
+    // Создаем новый комментарий
+    const newComment = {
+      id: crypto.randomUUID(), // Используем импортированный модуль
+      name: name,
+      text: comment,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Добавляем комментарий в массив. Убедимся, что массив существует.
+    if (!articles[articleIndex].comments) {
+      articles[articleIndex].comments = [];
+    }
+    articles[articleIndex].comments.unshift(newComment); // unshift добавляет в начало
+
+    // Перезаписываем весь файл с обновленными данными
+    writeArticles(articles);
+
+    // Отправляем успешный ответ со статусом 201 (Created)
+    res.status(201).json(newComment);
+
+  } catch (error) {
+    console.error("Ошибка при сохранении комментария:", error);
+    res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+  }
 });
 
 

@@ -6,6 +6,8 @@ import BackButton from '../../../components/BackButton';
 import styles from './ArticlePage.module.css'; // <-- ШАГ 1: Используем CSS Modules для лучшей изоляции стилей
 import ShareButton from './ShareButton';
 
+import CommentsBlock from '../../../components/CommentsBlock';
+
 // Функция для загрузки одной статьи по slug
 async function getArticle(slug) {
     try {
@@ -131,8 +133,39 @@ export default async function ArticlePage({ params }) {
     };
 
 
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://moms-helper.ru/article/${currentArticle.slug}`
+        },
+        "headline": currentArticle.title,
+        "description": currentArticle.excerpt,
+        "image": `https://moms-helper.ru${currentArticle.image}`, // Убедитесь, что здесь полный URL
+        "author": {
+            "@type": "Person", // или Organization, если статьи пишет редакция
+            "name": "Эксперт Помощника Мамы" // ВАЖНО: Добавьте это поле в ваш JSON
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Помощник Мамы",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://moms-helper.ru/logo.png" // Укажите полный путь к логотипу сайта
+            }
+        },
+    };
+
+
     return (
         <div className={styles['article-page-container']}> {/* Используем CSS Modules */}
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+            />
+
             <BackButton />
             <ShareButton />
 
@@ -155,6 +188,11 @@ export default async function ArticlePage({ params }) {
                     dangerouslySetInnerHTML={{ __html: currentArticle.content }}
                 />
 
+                <CommentsBlock
+                    articleSlug={currentArticle.slug}
+                    initialComments={currentArticle.comments || []}
+                />
+
                 {/* Блок "Вам также может быть интересно" */}
                 {relatedArticles.length > 0 && (
                     <div className={styles.relatedArticlesBlock}>
@@ -170,6 +208,7 @@ export default async function ArticlePage({ params }) {
                         </ul>
                     </div>
                 )}
+                <hr className={styles.divider} />
             </div>
         </div>
     );
