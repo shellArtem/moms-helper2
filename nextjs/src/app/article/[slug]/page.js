@@ -48,19 +48,7 @@ export async function generateMetadata({ params }) {
             description: article.excerpt,
             alternates: {
                 canonical: canonicalUrl,
-            },
-            openGraph: {
-                title: `${article.title} - Помощник Мамы`,
-                description: article.excerpt,
-                url: canonicalUrl,
-                // images: [{ url: article.image }],
-            },
-            twitter: {
-                card: "summary_large_image",
-                title: `${article.title} - Помощник Мамы`,
-                description: article.excerpt,
-                // images: [article.image],
-            },
+            }
         };
     }
 
