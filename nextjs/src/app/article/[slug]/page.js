@@ -5,6 +5,7 @@ import '../../../styles/ArticlePage.css';
 import BackButton from '../../../components/BackButton';
 import styles from './ArticlePage.module.css'; // <-- ШАГ 1: Используем CSS Modules для лучшей изоляции стилей
 import ShareButton from './ShareButton';
+import { notFound } from 'next/navigation';
 
 import CommentsBlock from '../../../components/CommentsBlock';
 
@@ -30,48 +31,39 @@ async function getAllArticles() {
     }
 }
 
-// // Функция для генерации мета-тегов на сервере
-// export async function generateMetadata({ params }) {
-//     const awaitedParams = await params;
-//     const article = await getArticle(awaitedParams.slug);
-//     if (!article) {
-//         return { title: 'Статья не найдена' };
-//     }
-//     return {
-//         title: `${article.title} - Помощник Мамы`,
-//         description: article.excerpt,
-//     };
-// }
-
 // Функция для генерации мета-тегов на сервере
 export async function generateMetadata({ params }) {
     const awaitedParams = await params;
     const article = await getArticle(awaitedParams.slug);
     if (!article) {
-        return { title: 'Статья не найдена' };
+        return {
+            title: 'Статья не найдена',
+            description: 'Запрошенная статья не найдена на сайте.'
+        };
+    } else {
+        const canonicalUrl = `https://moms-helper.ru/article/${article.slug}`;
+
+        return {
+            title: `${article.title}`,
+            description: article.excerpt,
+            alternates: {
+                canonical: canonicalUrl,
+            },
+            openGraph: {
+                title: `${article.title} - Помощник Мамы`,
+                description: article.excerpt,
+                url: canonicalUrl,
+                // images: [{ url: article.image }],
+            },
+            twitter: {
+                card: "summary_large_image",
+                title: `${article.title} - Помощник Мамы`,
+                description: article.excerpt,
+                // images: [article.image],
+            },
+        };
     }
 
-    const canonicalUrl = `https://moms-helper.ru/article/${article.slug}`;
-
-    return {
-        title: `${article.title}`,
-        description: article.excerpt,
-        alternates: {
-            canonical: canonicalUrl,
-        },
-        openGraph: {
-            title: `${article.title} - Помощник Мамы`,
-            description: article.excerpt,
-            url: canonicalUrl,
-            images: [{ url: article.image }],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: `${article.title} - Помощник Мамы`,
-            description: article.excerpt,
-            images: [article.image],
-        },
-    };
 }
 
 // Компонент страницы
@@ -80,7 +72,8 @@ export default async function ArticlePage({ params }) {
     const currentArticle = await getArticle(awaitedParams.slug);
 
     if (!currentArticle) {
-        return <div>Статья не найдена.</div>;
+        // return <div>Статья не найдена.</div>;
+        notFound();
     }
 
     const allArticles = await getAllArticles(); // Загружаем все статьи
@@ -109,29 +102,6 @@ export default async function ArticlePage({ params }) {
         // Если статей в категории достаточно, перемешиваем их и берем первые 5
         relatedArticles = relatedArticles.sort(() => 0.5 - Math.random()).slice(0, 5);
     }
-
-    const handleShare = async () => {
-        const url = typeof window !== "undefined" ? window.location.href : "";
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: currentArticle.title,
-                    text: "Посмотри эту статью!",
-                    url,
-                });
-            } catch (err) {
-                console.error("Ошибка при использовании Web Share API:", err);
-            }
-        } else {
-            try {
-                await navigator.clipboard.writeText(url);
-                alert("Ссылка скопирована!");
-            } catch (err) {
-                console.error("Не удалось скопировать ссылку:", err);
-            }
-        }
-    };
-
 
     const schemaData = {
         "@context": "https://schema.org",
@@ -171,16 +141,18 @@ export default async function ArticlePage({ params }) {
 
             <div className={styles['article-page']}>
                 <div className={styles.imageContainer}>
-                    <Image
-                        src={currentArticle.image}
-                        alt={currentArticle.title}
-                        fill
-                        // sizes="100vw"
-                        style={{ objectFit: 'cover' }}
-                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                        className="article-header-image"
-                        unoptimized={true}
-                    />
+                    {currentArticle.image && (
+                        <Image
+                            src={currentArticle.image}
+                            alt={currentArticle.title}
+                            fill
+                            // sizes="100vw"
+                            style={{ objectFit: 'cover' }}
+                            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                            className="article-header-image"
+                            unoptimized={true}
+                        />
+                    )}
                 </div>
                 <h1>{currentArticle.title}</h1>
                 <div
