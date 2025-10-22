@@ -31,6 +31,12 @@
   line-height: 1.2;
 }
 
+@media (max-width: 1024px) {
+  .article-page h1 {
+    font-size: 20px;
+  }
+}
+
 .article-content {
   font-size: 1.1em;
   line-height: 1.7;
@@ -108,7 +114,7 @@
 
 /*page.css */
 .article-page h1 {
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
   margin-top: 20px;
   margin-bottom: 20px;
 }
